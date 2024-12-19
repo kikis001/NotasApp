@@ -1,0 +1,12 @@
+use("notasDatabaseDev")
+
+db.notas.aggregate([
+  {
+    $lookup: {
+      from: "users",
+      localField: "userId",
+      foreignField: "_id",
+      as: "user"
+    }
+  }
+])

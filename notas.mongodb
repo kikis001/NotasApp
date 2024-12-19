@@ -1,0 +1,87 @@
+use('notasDatabaseDev');
+
+// db.notas.find()
+
+db.notas.insertMany([
+  {
+    title: 'titulo de la nota 1',
+    body: 'cuerpo de la nota 1',
+    category: 'categoria de la nota',
+    color: 'color de la nota',
+    notasI: [],
+    userId: ObjectId('67568d56a99d0e36612a2ca6'),
+  },
+  {
+    title: 'titulo de la nota 2',
+    body: 'cuerpo de la nota 2',
+    category: 'categoria de la nota',
+    color: 'color de la nota',
+    notasI: [
+      ObjectId('67592976814d568b74869452'),
+      ObjectId('67592976814d568b74869455')
+    ],
+    userId: ObjectId('67568d56a99d0e36612a2ca6'),
+  },
+  {
+    title: 'titulo de la nota 3',
+    body: 'cuerpo de la nota 3',
+    category: 'categoria de la nota',
+    color: 'color de la nota',
+    notasI: [],
+    userId: ObjectId('67568d56a99d0e36612a2ca6'),
+  },
+  {
+    title: 'titulo de la nota 4',
+    body: 'cuerpo de la nota 4',
+    category: 'categoria de la nota',
+    color: 'color de la nota',
+    notasI: [],
+    userId: ObjectId('67568d56a99d0e36612a2ca6'),
+  },
+]);
+
+// db.notas.insertMany([
+//   {
+//     title: 'titulo de la nota 1',
+//     body: 'cuerpo de la nota 1',
+//     category: 'categoria de la nota',
+//     color: 'color de la nota',
+//     notasI: [],
+//     userId: {
+//       $oid: '67568d56a99d0e36612a2ca6',
+//     },
+//   },
+//   {
+//     title: 'titulo de la nota 2',
+//     body: 'cuerpo de la nota 2',
+//     category: 'categoria de la nota',
+//     color: 'color de la nota',
+//     notasI: [
+//       {$oid: '67592976814d568b74869452'},
+//       {$oid: '67592976814d568b74869455'}
+//     ],
+//     userId: {
+//       $oid: '67568d56a99d0e36612a2ca6',
+//     },
+//   },
+//   {
+//     title: 'titulo de la nota 3',
+//     body: 'cuerpo de la nota 3',
+//     category: 'categoria de la nota',
+//     color: 'color de la nota',
+//     notasI: [],
+//     userId: {
+//       $oid: '67568d56a99d0e36612a2ca6',
+//     },
+//   },
+//   {
+//     title: 'titulo de la nota 4',
+//     body: 'cuerpo de la nota 4',
+//     category: 'categoria de la nota',
+//     color: 'color de la nota',
+//     notasI: [],
+//     userId: {
+//       $oid: '67568d56a99d0e36612a2ca6',
+//     },
+//   },
+// ]);

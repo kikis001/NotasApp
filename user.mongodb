@@ -1,0 +1,7 @@
+use("notasDatabaseDev")
+
+db.users.insertOne({
+  name: "Luis Enrique",
+  email: "kikisxx@gmail.com",
+  password: "kayabamundonuevo"
+})

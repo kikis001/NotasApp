@@ -1,0 +1,12 @@
+use('notasDatabaseDev');
+
+db.notas.aggregate([
+  {
+    $lookup: {
+      from: "notas", // Nombre de la colección (la misma colección)
+      localField: "notasI", // Campo con los ObjectIds referenciados
+      foreignField: "_id", // Campo en la colección referenciada
+      as: "detallesNotas" // Campo donde se almacenarán los documentos relacionados
+    }
+  }
+]);
