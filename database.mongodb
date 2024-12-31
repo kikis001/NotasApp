@@ -1,12 +1,46 @@
 use("notasDatabaseDev")
 
+// db.notas.aggregate([
+//   {
+//     $lookup: {
+//       from: "users",
+//       localField: "userId",
+//       foreignField: "_id",
+//       as: "user"
+//     }
+//   }
+// ])
+// db.notas.find()
 db.notas.aggregate([
+  // Primero, haces el lookup para obtener la información del usuario
   {
     $lookup: {
-      from: "users",
-      localField: "userId",
-      foreignField: "_id",
-      as: "user"
+      from: "users",          // La colección de usuarios
+      localField: "userId",   // El campo de la colección de notas
+      foreignField: "_id",    // El campo en la colección de usuarios
+      as: "user"              // El alias que se utilizará para almacenar los datos del usuario
+    }
+  },
+  // Luego, haces un segundo lookup para obtener las notas relacionadas
+  {
+    $lookup: {
+      from: "notas",          // La misma colección de notas
+      localField: "notasI",   // El campo que contiene los ObjectIds de las notas relacionadas
+      foreignField: "_id",    // El campo en la colección de notas
+      as: "relatedNotes"      // El alias para almacenar las notas relacionadas
+    }
+  },
+  // Si deseas, puedes hacer un `$unwind` para deshacerte de los arreglos y tener cada nota con los detalles completos
+  {
+    $unwind: {
+      path: "$user",         // Para deshacer el arreglo de usuarios y tener un solo objeto
+      preserveNullAndEmptyArrays: true  // Si no hay usuario relacionado, se mantiene el documento
+    }
+  },
+  {
+    $unwind: {
+      path: "$relatedNotes", // Para deshacer el arreglo de notas relacionadas y tener un solo objeto
+      preserveNullAndEmptyArrays: true  // Si no hay notas relacionadas, se mantiene el documento
     }
   }
 ])

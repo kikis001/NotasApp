@@ -1,5 +1,6 @@
 import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
 import { PartialType } from '@nestjs/swagger';
+import { Types } from 'mongoose';
 
 export class CreateNotaDto {
   @IsString()
@@ -20,7 +21,10 @@ export class CreateNotaDto {
 
   @IsMongoId()
   @IsNotEmpty()
-  readonly userId: string;
+  readonly userId: Types.ObjectId;
 }
 
-export class UpdateNotaDto extends PartialType(CreateNotaDto) {}
+export class UpdateNotaDto extends PartialType(CreateNotaDto) {
+  @IsMongoId({ each: true })
+  notaI: (string | Types.ObjectId)[];
+}

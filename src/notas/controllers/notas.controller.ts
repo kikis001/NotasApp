@@ -7,17 +7,17 @@ export class NotasController {
   constructor(private notasService: NotasService) {}
 
   @Get()
-  get(): string {
-    return 'Hello from notas controller';
+  get() {
+    return this.notasService.getAll();
   }
 
   @Post()
-  create(@Body() body: CreateNotaDto): CreateNotaDto {
+  create(@Body() body: CreateNotaDto) {
     return this.notasService.create(body);
   }
 
-  @Put('id')
-  update(@Param(':id') id: string, @Body() body: UpdateNotaDto): UpdateNotaDto {
+  @Put(':id')
+  update(@Param('id') id: string, @Body() body: UpdateNotaDto) {
     return this.notasService.update(id, body);
   }
 }

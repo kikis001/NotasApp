@@ -38,4 +38,4 @@ import config from 'src/config';
   ],
   exports: ['MONGO', MongooseModule],
 })
-export class DatabaseModule { }
+export class DatabaseModule {}
