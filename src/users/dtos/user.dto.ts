@@ -8,7 +8,7 @@ export class CreateUserDto {
 
   @IsEmail()
   @IsNotEmpty()
-  email: string; // está por evaluarse
+  email: string;
 
   @IsString()
   @IsNotEmpty()

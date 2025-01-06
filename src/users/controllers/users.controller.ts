@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateUserDto } from '../dtos/user.dto';
 import { UsersService } from '../services/users.service';
+import { Role } from 'src/auth/models/roles.model';
 
 @Controller('users')
 export class UsersController {
@@ -18,6 +19,11 @@ export class UsersController {
 
   @Post()
   create(@Body() body: CreateUserDto) {
-    return this.usersService.create(body);
+    return this.usersService.create(body, Role.CLIENT);
+  }
+
+  @Post('/admin')
+  createAdmin(@Body() body: CreateUserDto) {
+    return this.usersService.create(body, Role.ADMIN);
   }
 }

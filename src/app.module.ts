@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { enviroments } from './enviroments';
 import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './auth/auth.module';
 import config from './config';
 
 @Module({
@@ -18,6 +19,7 @@ import config from './config';
       isGlobal: true,
     }),
     DatabaseModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

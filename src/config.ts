@@ -9,5 +9,6 @@ export default registerAs('config', () => {
       host: process.env.MONGO_HOST,
       dbName: process.env.MONGO_DB,
     },
+    jwt: process.env.JWT_SECRET,
   };
 });
