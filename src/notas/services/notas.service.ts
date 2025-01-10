@@ -8,12 +8,8 @@ import { Model, Types } from 'mongoose';
 export class NotasService {
   constructor(@InjectModel(Nota.name) private notaModel: Model<Nota>) {}
 
-  async getAll() {
-    return await this.notaModel
-      .find()
-      .populate('notaI')
-      .populate('userId')
-      .exec();
+  async getAll(id: string) {
+    return await this.notaModel.find({ userId: id }).populate('notaI').exec();
   }
 
   create(body: CreateNotaDto) {

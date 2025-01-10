@@ -6,17 +6,23 @@ import {
   Param,
   Post,
   Put,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { NotasService } from '../services/notas.service';
 import { CreateNotaDto, UpdateNotaDto } from '../dtos/nota.dto';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { Public } from 'src/auth/decorators/public.decorator';
 
+@UseGuards(JwtAuthGuard)
 @Controller('notas')
 export class NotasController {
   constructor(private notasService: NotasService) {}
 
+  @Public()
   @Get()
-  get() {
-    return this.notasService.getAll();
+  get(@Request() req) {
+    return this.notasService.getAll(req.user.sub);
   }
 
   @Post()
